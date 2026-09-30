@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6a2cf0"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Family Money Tracker</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f1edff;--card:#fff;--tx:#1d1a3a;--mut:#736f96;--ln:#e5dffb}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15122b;--card:#231f45;--tx:#f2f0ff;--mut:#a9a4d4;--ln:#352f61}}
+:root[data-theme="dark"]{--bg:#15122b;--card:#231f45;--tx:#f2f0ff;--mut:#a9a4d4;--ln:#352f61}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:96px}
+.hd{background:linear-gradient(135deg,#6a2cf0,#e6199b 70%,#ff8a3d);color:#fff;padding:14px 16px 46px;border-radius:0 0 28px 28px}
+.hd h1{margin:0;font-size:18px}.mn{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.mn b{font-size:20px}.mn button{background:#ffffff33;border:0;color:#fff;font-size:20px;width:38px;height:38px;border-radius:50%}
+main{padding:0 14px;margin-top:-34px}
+.c{background:var(--card);border-radius:20px;padding:14px;margin-bottom:12px;box-shadow:0 4px 16px #6a2cf01f}
+.c h3{margin:0 0 8px;font-size:15px}.big{font-size:32px;font-weight:800}.mut{color:var(--mut);font-size:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.st{border-radius:14px;padding:8px;color:#fff;text-align:center}.st b{display:block;font-size:15px}.st small{opacity:.9}
+.bar{height:10px;border-radius:9px;background:var(--ln);overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;border-radius:9px}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--ln)}.row:last-child{border:0}
+.ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:19px;flex:none}
+.fl{flex:1;min-width:0}.fl div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tg{display:flex;background:var(--ln);border-radius:14px;padding:4px;margin-bottom:12px}
+.tg button{flex:1;border:0;background:none;color:var(--tx);padding:10px;border-radius:11px;font-weight:700;font-size:15px}
+.tg .on{background:linear-gradient(135deg,#6a2cf0,#e6199b);color:#fff}
+input{width:100%;padding:12px;border-radius:12px;border:2px solid var(--ln);background:var(--bg);color:var(--tx);font-size:16px;margin-bottom:10px}
+input#am{font-size:30px;font-weight:800;text-align:center}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.chip{border:2px solid var(--ln);border-radius:14px;padding:8px 2px;text-align:center;font-size:12px;background:var(--bg);color:var(--tx)}
+.chip span{display:block;font-size:22px}.chip.on{border-color:var(--cc);background:var(--cc);color:#fff;font-weight:700}
+.btn{width:100%;border:0;border-radius:16px;padding:14px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(135deg,#06d6a0,#118ab2)}
+.btn.s{padding:9px;font-size:14px;width:auto;margin:4px 4px 0 0}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;align-items:flex-end;background:var(--card);padding:6px 6px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px #6a2cf02a;border-radius:22px 22px 0 0}
+nav button{background:none;border:0;color:var(--mut);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:56px}
+nav button span{font-size:22px}nav .on{color:#e6199b;font-weight:700}
+nav .plus span{background:linear-gradient(135deg,#6a2cf0,#e6199b);color:#fff;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:30px;margin-top:-26px;box-shadow:0 6px 14px #e6199b66}
+.dn{width:130px;height:130px;border-radius:50%;display:grid;place-items:center;margin:4px auto 10px}.dn div{width:78px;height:78px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-weight:800;text-align:center;font-size:13px}
+.bs{display:flex;gap:6px;align-items:flex-end;height:120px}.bc{flex:1;text-align:center}.bb{height:100px;display:flex;gap:3px;align-items:flex-end;justify-content:center}.bb i{width:40%;border-radius:6px 6px 0 0;min-height:2px}
+.x{border:0;background:none;color:var(--mut);font-size:16px}.x.r{color:#ef476f;font-weight:700}
+.tost{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:#1d1a3a;color:#fff;padding:10px 18px;border-radius:20px;font-weight:700;z-index:9}
+select{border:2px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--tx);padding:6px;font-size:13px;max-width:130px}
+label{font-size:12px;color:var(--mut);display:block;margin:2px 0}textarea{width:100%;height:80px;border-radius:12px;border:2px solid var(--ln);background:var(--bg);color:var(--tx);font-size:11px}
+</style></head><body>
+<div class="hd"><h1>💰 Family Money Tracker <span style="font-weight:400;font-size:12px">· OMR</span></h1><div id="sy" style="font-size:12px;opacity:.9">📴 Saved on this device only</div><div class="mn"><button onclick="sh(-1)">‹</button><b id="ml"></b><button onclick="sh(1)">›</button></div></div>
+<main id="app"></main>
+<nav><button data-v="home" onclick="go('home')"><span>🏠</span>Home</button><button data-v="hist" onclick="go('hist')"><span>📒</span>History</button><button class="plus" data-v="add" onclick="go('add')"><span>＋</span>Add</button><button data-v="bud" onclick="go('bud')"><span>🎯</span>Budget</button><button data-v="rep" onclick="go('rep')"><span>📊</span>Report</button></nav>
+<script>
+const $=q=>document.querySelector(q),f2=n=>(+n).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2}),pad=n=>String(n).padStart(2,"0"),ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const C=[["rent","🏠","Rent","#ef476f","n",200,0],["groc","🛒","Groceries","#ff9f1c","n",190,1],["bill","💡","Bills","#e8b400","n",45,0],["trn","🚗","Transport","#06d6a0","n",55,1],["kid","🧒","Kids & medical","#118ab2","n",65,0],["loan","🏦","Loan EMI","#9b5de5","d",282,0],["emer","🛟","Emergency fund","#00a6d6","s",60,0],["inv","📈","Investments","#2ec4b6","s",10,0],["edu","🎓","Kids fund","#f15bb5","s",20,0],["fun","🎉","Fun & shopping","#fb5607","w",30,1],["fam","🤝","Family & charity","#8338ec","w",8,1],["oth","🧾","Other","#6c757d","w",35,1]];
+const IC=[["sal","💵","Salary"],["bon","🎁","Bonus"],["oi","💰","Other income"]];
+const K={n:"Needs",d:"Debt",s:"Savings",w:"Wants"};
+const cat=k=>C.find(c=>c[0]==k)||[...IC.find(c=>c[0]==k),"#06d6a0","i"];
+let S=null;try{S=JSON.parse(localStorage.getItem("fmt1"))}catch(e){}
+S=S||{inc:1000,tx:[],bud:Object.fromEntries(C.map(c=>[c[0],c[5]])),loan:{bal:12000,rate:6.5,emi:282},ef:{t:5022,h:0}};
+S.sms=S.sms||[];S.del=S.del||[];S.ts=S.ts||0;
+const local=()=>{try{localStorage.setItem("fmt1",JSON.stringify(S))}catch(e){}};
+const save=()=>{S.ts=Date.now();local();push()};
+const cm=ymd(new Date()).slice(0,7);let mo=cm,V="home",aT="e",aC="groc",dl=0;
+const shm=(m,n)=>{const[y,x]=m.split("-");return ymd(new Date(+y,+x-1+n,1)).slice(0,7)};
+const mlab=m=>{const[y,x]=m.split("-");return new Date(+y,+x-1,1).toLocaleString("en",{month:"short",year:"numeric"})};
+const sh=n=>{mo=shm(mo,n);render()};
+function st(m){const r={i:0,s:{},sp:0,sv:0,k:{n:0,d:0,s:0,w:0}};for(const t of S.tx){if(!t.d.startsWith(m))continue;if(t.t=="i")r.i+=t.a;else{r.s[t.c]=(r.s[t.c]||0)+t.a;const k=cat(t.c)[4];r.k[k]+=t.a;k=="s"?r.sv+=t.a:r.sp+=t.a}}return r}
+const bar=(p,c)=>`<div class="bar"><i style="width:${Math.min(100,Math.max(0,p))}%;background:${c}"></i></div>`;
+const sc=p=>p<80?"#06d6a0":p<100?"#ff9f1c":"#ef476f";
+function lm(){const L=S.loan,r=L.rate/1200;if(L.bal<=0)return 0;if(!r)return Math.ceil(L.bal/L.emi);const x=1-L.bal*r/L.emi;return x<=0?Infinity:Math.ceil(-Math.log(x)/Math.log(1+r))}
+function daysLeft(){if(mo!=cm)return 0;const d=new Date();return new Date(d.getFullYear(),d.getMonth()+1,0).getDate()-d.getDate()+1}
+function toast(t){const e=document.createElement("div");e.className="tost";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
+function go(v){V=v;dl=0;render();scrollTo(0,0)}
+function render(){$("#ml").textContent=mlab(mo);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==V));$("#app").innerHTML=({home,hist,add,bud,rep,sms})[V]()}
+function home(){const s=st(mo),inc=s.i||S.inc,left=inc-s.sp-s.sv,dy=daysLeft();let vr=0,tb=0;
+C.forEach(c=>{const b=S.bud[c[0]];if(c[4]!="s")tb+=b;if(c[6])vr+=Math.max(0,b-(s.s[c[0]]||0))});
+const pct=inc?(s.sp+s.sv)/inc*100:0,pace=dy?(new Date().getDate()/(new Date().getDate()+dy-1))*100:100,ops=tb?s.sp/tb*100:0;
+const tip=mo!=cm?"Past month review":ops>pace+10?"⚠️ You are spending faster than the month is passing. Slow down on wants.":ops<pace-10?"🎉 You are under pace - great job! Move extra to savings or the loan.":"👍 Spending is on pace with the month.";
+const top=C.filter(c=>c[6]).map(c=>({c,p:S.bud[c[0]]?(s.s[c[0]]||0)/S.bud[c[0]]*100:0})).sort((a,b)=>b.p-a.p).slice(0,4);
+const L=S.loan,m=lm(),ef=S.ef.h+S.tx.filter(t=>t.c=="emer").reduce((a,t)=>a+t.a,0),ep=S.ef.t?ef/S.ef.t*100:0;
+return `<button class="btn" style="background:linear-gradient(135deg,#ff8a3d,#e6199b);margin-bottom:12px" onclick="go(\'sms\')">📩 Import bank SMS${PEND.length?" ("+PEND.length+" new)":""}</button><div class="c"><div class="mut">Left to use this month</div><div class="big" style="color:${left<0?"#ef476f":"#06a77d"}">${f2(left)}</div>${bar(pct,sc(pct))}
+<div class="g3"><div class="st" style="background:#06d6a0"><small>Income</small><b>${f2(s.i)}</b></div><div class="st" style="background:#ef476f"><small>Spent</small><b>${f2(s.sp)}</b></div><div class="st" style="background:#118ab2"><small>Saved</small><b>${f2(s.sv)}</b></div></div></div>
+${dy?`<div class="c" style="background:linear-gradient(135deg,#ffb703,#fb5607);color:#fff"><div style="opacity:.9;font-size:12px">Safe to spend per day</div><div class="big">${f2(vr/dy)}</div><div style="font-size:12px">on groceries, transport, fun, family & other · ${dy} days left</div></div>`:""}
+<div class="c"><div>${tip}</div></div>
+<div class="c"><h3>🔥 Daily-spend budgets</h3>${top.map(x=>`<div><div style="display:flex;justify-content:space-between"><span>${x.c[1]} ${x.c[2]}</span><span class="mut">${f2(s.s[x.c[0]]||0)} / ${f2(S.bud[x.c[0]])}</span></div>${bar(x.p,sc(x.p))}</div>`).join("")}</div>
+<div class="c"><h3>🏦 Personal loan</h3><div class="big" style="font-size:24px">${f2(L.bal)} <span class="mut">left</span></div><div class="mut">${L.bal<=0?"🎉 Debt free!":m==Infinity?"EMI too low for the interest":`About ${m} months to go · EMI ${f2(L.emi)}`}</div><div class="mut">Log the EMI under Add > Loan EMI to reduce balance automatically.</div></div>
+<div class="c"><h3>🛟 Emergency fund</h3><div>${f2(ef)} <span class="mut">of ${f2(S.ef.t)}</span></div>${bar(ep,"#00a6d6")}<div class="mut">${ep.toFixed(0)}% complete</div></div>`}
+function hist(){const l=S.tx.filter(t=>t.d.startsWith(mo)).sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id);if(!l.length)return `<div class="c">No entries in ${mlab(mo)}. Tap ＋ to add one.</div>`;let d="",h="";
+l.forEach(t=>{if(t.d!=d){d=t.d;h+=`<div class="mut" style="margin:10px 4px 4px">${new Date(t.d+"T00:00").toLocaleDateString("en",{weekday:"short",day:"numeric",month:"short"})}</div>`}
+const c=cat(t.c);h+=`<div class="c" style="padding:6px 12px;margin-bottom:6px"><div class="row"><div class="ic" style="background:${c[3]}33">${c[1]}</div><div class="fl"><div><b>${c[2]}</b></div><div class="mut">${esc(t.n||"")}</div></div><b style="color:${t.t=="i"?"#06a77d":"#ef476f"}">${t.t=="i"?"+":"-"}${f2(t.a)}</b><button class="x ${dl==t.id?"r":""}" onclick="del(${t.id})">${dl==t.id?"Sure?":"✕"}</button></div></div>`});return h}
+function del(id){if(dl!=id){dl=id;render();return}const t=S.tx.find(x=>x.id==id);if(t&&t.p)S.loan.bal+=t.p;S.tx=S.tx.filter(x=>x.id!=id);S.del.push(id);dl=0;save();render()}
+function chips(){const l=aT=="e"?C:IC;$("#cg").innerHTML=l.map(c=>`<button class="chip ${c[0]==aC?"on":""}" style="--cc:${aT=="e"?c[3]:"#06d6a0"}" onclick="pk('${c[0]}')"><span>${c[1]}</span>${c[2]}</button>`).join("")}
+function pk(k){aC=k;chips()}
+function ty(t){aT=t;aC=t=="e"?"groc":"sal";document.querySelectorAll(".tg button").forEach(b=>b.classList.toggle("on",b.dataset.t==t));chips()}
+function add(){setTimeout(()=>{chips();ty(aT)},0);return `<button class="btn" style="background:linear-gradient(135deg,#ff8a3d,#e6199b);margin-bottom:12px" onclick="go(\'sms\')">📩 Import bank SMS${PEND.length?" ("+PEND.length+" new)":""}</button><div class="c"><div class="tg"><button data-t="e" onclick="ty('e')">💸 Expense</button><button data-t="i" onclick="ty('i')">💵 Income</button></div>
+<input id="am" type="number" inputmode="decimal" step="0.001" placeholder="0.00"><div class="cg" id="cg"></div><label>Date</label><input id="dt" type="date" value="${ymd(new Date())}"><input id="nt" placeholder="Note (optional)"><button class="btn" onclick="sv()">Save entry</button></div>`}
+function sv(){const a=parseFloat($("#am").value);if(!(a>0)){toast("Enter an amount");return}
+const t={id:Date.now(),t:aT,a,c:aC,d:$("#dt").value||ymd(new Date()),n:$("#nt").value.trim()};
+if(aT=="e"&&aC=="loan"){const I=S.loan.bal*S.loan.rate/1200;t.p=Math.max(0,Math.min(S.loan.bal,a-I));S.loan.bal-=t.p}
+S.tx.push(t);save();$("#am").value="";$("#nt").value="";toast("Saved ✓ "+(aT=="e"?"-":"+")+f2(a))}
+function bud(){const s=st(mo);let tot=0;C.forEach(c=>tot+=S.bud[c[0]]);
+const rows=C.map(c=>{const sp=s.s[c[0]]||0,b=S.bud[c[0]],p=b?sp/b*100:0;return `<div class="row"><div class="ic" style="background:${c[3]}33">${c[1]}</div><div class="fl"><div>${c[2]} <span class="mut">${f2(sp)} spent</span></div>${bar(p,sc(p))}</div><input style="width:84px;margin:0;padding:8px" type="number" inputmode="decimal" value="${b}" onchange="sb('${c[0]}',this.value)"></div>`}).join("");
+const g=(l,k,v)=>`<label>${l}</label><input type="number" inputmode="decimal" value="${v}" onchange="ss('${k}',this.value)">`;
+return `<div class="c"><h3>🎯 Monthly budgets</h3><div class="mut">Total planned ${f2(tot)} vs income ${f2(S.inc)} → ${tot>S.inc?"⚠️ over by "+f2(tot-S.inc):"✅ fits"}</div>${rows}</div>
+<div class="c"><h3>⚙️ Settings</h3>${g("Monthly salary (OMR)","inc",S.inc)}${g("Loan balance left","lb",S.loan.bal)}${g("Loan interest % per year","lr",S.loan.rate)}${g("Loan EMI per month","le",S.loan.emi)}${g("Emergency fund target","et",S.ef.t)}${g("Emergency fund saved before using app","eh",S.ef.h)}</div>`}
+function sb(k,v){S.bud[k]=Math.max(0,+v||0);save();render()}
+function ss(k,v){v=Math.max(0,+v||0);if(k=="inc")S.inc=v;if(k=="lb")S.loan.bal=v;if(k=="lr")S.loan.rate=v;if(k=="le")S.loan.emi=v;if(k=="et")S.ef.t=v;if(k=="eh")S.ef.h=v;save();toast("Updated ✓")}
+function rep(){const s=st(mo),inc=s.i||S.inc,tot=s.sp+s.sv;let a=0;
+const ds=C.filter(c=>s.s[c[0]]).map(c=>{const p=s.s[c[0]]/tot*100,x=`${c[3]} ${a}% ${a+p}%`;a+=p;return{c,x,v:s.s[c[0]]}});
+const ms=[-5,-4,-3,-2,-1,0].map(n=>shm(mo,n)),d=ms.map(m=>({m,s:st(m)})),mx=Math.max(1,...d.map(x=>Math.max(x.s.i,x.s.sp+x.s.sv)));
+const rate=inc?s.sv/inc*100:0;
+return `<div class="c"><h3>Where money went</h3>${tot?`<div class="dn" style="background:conic-gradient(${ds.map(x=>x.x).join(",")})"><div>${f2(tot)}</div></div>${ds.sort((x,y)=>y.v-x.v).map(x=>`<div class="row" style="padding:5px 0"><span style="width:12px;height:12px;border-radius:4px;background:${x.c[3]}"></span><div class="fl">${x.c[1]} ${x.c[2]}</div><b>${f2(x.v)}</b><span class="mut" style="width:38px;text-align:right">${(x.v/tot*100).toFixed(0)}%</span></div>`).join("")}`:'<div class="mut">No expenses this month yet.</div>'}</div>
+<div class="c"><h3>Income vs spending · 6 months</h3><div class="bs">${d.map(x=>`<div class="bc"><div class="bb"><i style="height:${x.s.i/mx*100}%;background:#06d6a0"></i><i style="height:${(x.s.sp+x.s.sv)/mx*100}%;background:#ef476f"></i></div><small class="mut">${mlab(x.m).slice(0,3)}</small></div>`).join("")}</div><div class="mut">🟩 Income &nbsp; 🟥 Spent + saved</div></div>
+<div class="c"><h3>Progress this month</h3><div>Savings rate <b>${rate.toFixed(1)}%</b> <span class="mut">(goal 20%)</span></div>${bar(rate/20*100,"#118ab2")}
+${Object.keys(K).map(k=>{const p=inc?s.k[k]/inc*100:0;return `<div style="display:flex;justify-content:space-between;margin-top:6px"><span>${K[k]}</span><span class="mut">${f2(s.k[k])} · ${p.toFixed(0)}% of income</span></div>${bar(p,{n:"#ff9f1c",d:"#9b5de5",s:"#118ab2",w:"#f15bb5"}[k])}`}).join("")}</div>
+<div class="c"><h3>💾 Backup / restore</h3><div class="mut">Data lives only in this browser on this phone. Copy the backup text and keep it safe (e.g. WhatsApp to yourself).</div><textarea id="bk"></textarea><button class="btn s" onclick="ex()">Show backup</button><button class="btn s" style="background:#9b5de5" onclick="im()">Restore from text</button></div>`}
+function ex(){const b=$("#bk");b.value=JSON.stringify(S);b.select();try{navigator.clipboard.writeText(b.value);toast("Copied ✓")}catch(e){toast("Select & copy the text")}}
+function im(){try{const d=JSON.parse($("#bk").value);if(!d.tx||!d.bud)throw 0;S=d;S.sms=S.sms||[];S.del=S.del||[];save();toast("Restored ✓");render()}catch(e){toast("Paste a valid backup first")}}
+
+let PEND=[],SMSTXT="",NR=0,DP=0;
+const HASH=s=>{let h=5381;for(const ch of s)h=(h*33^ch.charCodeAt(0))>>>0;return"s"+h};
+const KW=[["groc",/supermarket|lulu|carrefour|grocer|hypermarket|sultan center|nesto|mart\b|bakery/i],["trn",/fuel|petrol|oman oil|omanoil|shell|al maha|taxi|uber|otaxi/i],["bill",/ooredoo|omantel|vodafone|nama|electric|water|internet|bill|haya|mazoon|majan/i],["kid",/pharmac|hospital|clinic|school|nursery|medical|dental|kids/i],["fun",/restaurant|cafe|coffee|mcdonald|kfc|pizza|burger|mall|noon|amazon|talabat|netflix|cinema|shopping/i],["rent",/rent/i],["loan",/\bemi\b|loan|instal/i]];
+function parseSms(x,fd){x=x.replace(/\s+/g," ").trim();
+const am=x.match(/(?:OMR|RO|R\.O\.?)\s*([\d,]*\.?\d+)|([\d,]*\.?\d+)\s*(?:OMR|RO)\b/i);if(!am)return null;
+const a=parseFloat((am[1]||am[2]).replace(/,/g,""));if(!(a>0)||/\botp\b|one.?time|verification code/i.test(x))return null;
+const d=/debited|debit\b|spent|purchase|withdraw|paid|payment|pos\b|sent|charged|transfer(?:red)? to/i.test(x),c=/credited|received|deposit|salary|refund/i.test(x);if(!d&&!c)return null;
+const inc=c&&!d,mm=x.match(/(?:\bat|\bto|@)\s+([A-Za-z0-9][A-Za-z0-9 &.'*\-]{2,28}?)(?=\s+(?:on|dated|from|using|via|ref|avail|bal|card|with|has|is)\b|[.,;]|$)/i);
+let dt=fd||ymd(new Date());const dm=x.match(/\b(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})\b/);
+if(dm){let y=+dm[3];if(y<100)y+=2000;const q=new Date(y,+dm[2]-1,+dm[1]);if(!isNaN(q)&&q<=new Date(Date.now()+864e5))dt=ymd(q)}
+const k=KW.find(z=>z[1].test(x));
+return{t:inc?"i":"e",a,c:inc?(/salary/i.test(x)?"sal":"oi"):(k?k[0]:"oth"),d:dt,n:mm?mm[1].trim():x.slice(0,40),h:HASH(x+(fd||""))}}
+function proc(l){PEND=[];NR=0;DP=0;l.forEach(([p,fd])=>{const r=parseSms(p,fd);if(!r)NR++;else if(S.sms.includes(r.h)||PEND.some(q=>q.h==r.h))DP++;else PEND.push(r)})}
+function readSms(){SMSTXT=$("#sm").value;proc(SMSTXT.split(/\n\s*\n/).map(x=>[x.trim()]).filter(x=>x[0]));render()}
+function scan(d,g){if(!window.Android)return;const r=Android.getSms(d);if(r=="denied"){if(g)toast("Allow SMS permission in phone settings");return}
+let a=[];try{a=JSON.parse(r)}catch(e){}proc(a.map(m=>[m.b,ymd(new Date(m.d))]));SMSTXT="";if(g)go("sms");else render()}
+function pasteClip(){try{navigator.clipboard.readText().then(t=>{$("#sm").value=t;readSms()}).catch(()=>toast("Long-press the box and paste"))}catch(e){toast("Long-press the box and paste")}}
+function pc(i,v){PEND[i].c=v}
+function rm(i){PEND.splice(i,1);render()}
+function addAll(){PEND.forEach((r,i)=>{const t={id:Date.now()+i,t:r.t,a:r.a,c:r.c,d:r.d,n:r.n,h:r.h};
+if(t.t=="e"&&t.c=="loan"){const I=S.loan.bal*S.loan.rate/1200;t.p=Math.max(0,Math.min(S.loan.bal,t.a-I));S.loan.bal-=t.p}S.tx.push(t);S.sms.push(r.h)});
+S.sms=S.sms.slice(-800);const n=PEND.length;PEND=[];SMSTXT="";save();toast(n+" entries added ✓");go("hist")}
+function sms(){return `<div class="c"><h3>📩 Import bank SMS</h3><div class="mut">Open your bank messages, copy one or many (leave a blank line between messages) and paste below. The app finds amount, shop, date and type, and skips OTP messages.</div><textarea id="sm" style="height:130px;margin:8px 0">${esc(SMSTXT)}</textarea><button class="btn s" onclick="readSms()">Read messages</button>${window.Android?`<button class="btn s" style="background:#06d6a0" onclick="scan(30,1)">📲 Scan phone SMS</button>`:""}<button class="btn s" style="background:#9b5de5" onclick="pasteClip()">Paste clipboard</button></div>
+${SMSTXT||PEND.length||NR||DP?`<div class="c"><h3>Found ${PEND.length} transaction${PEND.length==1?"":"s"}</h3><div class="mut">${NR} ignored (OTP / not a transaction) · ${DP} already imported</div>${PEND.map((r,i)=>`<div class="row"><div class="ic" style="background:${cat(r.c)[3]}33">${cat(r.c)[1]}</div><div class="fl"><div>${esc(r.n)} <span class="mut">${r.d}</span></div><select onchange="pc(${i},this.value)">${(r.t=="e"?C:IC).map(c=>`<option value="${c[0]}" ${c[0]==r.c?"selected":""}>${c[2]}</option>`).join("")}</select></div><b style="color:${r.t=="i"?"#06a77d":"#ef476f"}">${r.t=="i"?"+":"-"}${f2(r.a)}</b><button class="x" onclick="rm(${i})">✕</button></div>`).join("")}${PEND.length?`<button class="btn" style="margin-top:10px" onclick="addAll()">Add all ${PEND.length} to my tracker</button>`:""}</div>`:""}`}
+let DR=null,tm=0;
+function sy(t){const e=$("#sy");if(e)e.textContent=t}
+function push(){if(!DR)return;clearTimeout(tm);tm=setTimeout(()=>DR.set({j:JSON.stringify(S)}).then(()=>sy("☁️ Synced with your account")).catch(()=>sy("⚠️ Sync failed - saved on device")),700)}
+function merge(R){const del=new Set([...(S.del||[]),...(R.del||[])]),m=new Map();[...S.tx,...R.tx].forEach(t=>{if(!del.has(t.id))m.set(t.id,t)});
+S.tx=[...m.values()];S.del=[...del].slice(-500);S.sms=[...new Set([...(S.sms||[]),...(R.sms||[])])].slice(-800);
+if((R.ts||0)>S.ts){S.inc=R.inc;S.bud=R.bud;S.ef=R.ef;S.loan=R.loan;S.ts=R.ts}}
+async function initSync(){try{const c=window.claude;if(!c||!c.use)return;const[db,u]=await Promise.all([c.use("db"),c.use("user")]);if(!db||!u)return;const id=await u.id();if(!id)return;
+DR=db.collection("data/users/"+id).doc("finance");
+DR.onSnapshot(sn=>{if(!sn.exists){push();return}try{const R=JSON.parse(sn.data().j);sy("☁️ Synced with your account");
+if(R.tx.length!=S.tx.length||(R.ts||0)!=S.ts){merge(R);local();if(R.tx.length!=S.tx.length||S.ts>(R.ts||0))push();if(!["add","sms","bud"].includes(V))render()}}catch(e){}},()=>sy("⚠️ Sync unavailable"))}catch(e){}}
+render();initSync();if(window.Android)scan(14);
+</script></body></html>
